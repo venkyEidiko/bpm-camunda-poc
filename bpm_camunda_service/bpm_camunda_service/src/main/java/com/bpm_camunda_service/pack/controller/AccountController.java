@@ -7,17 +7,16 @@ import com.bpm_camunda_service.pack.model.response.Commonresponse;
 import com.bpm_camunda_service.pack.model.response.UserResponse;
 import com.bpm_camunda_service.pack.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api")
+@RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class AccountController {
 
     private final UserService userService;
@@ -30,6 +29,7 @@ public class AccountController {
         response.setResult(Arrays.asList(message));
         return  response;
     }
+
     @PostMapping("/login")
     public Commonresponse login(@RequestBody LoginRequest request) throws Exception{
         response = new Commonresponse();
