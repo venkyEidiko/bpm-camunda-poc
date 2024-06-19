@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="login-body">
+    
+        <div >
+            <mat-card class="first">
+                <mat-card-content>
+                    <div class="img-logo">
+                        
+                        <img class="logo"  src="../../../assets/bank-logo.png" alt="Not-found"/>
+                        <h2>XXX Bank</h2>
+                    </div>
+                    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                        <div class="form-data">
+                            <div class="form-row">
+                                <input type="text" formControlName="email" placeholder="Email">
+                                <small *ngIf="loginForm.errors?.['invalidInput'] && loginForm.get('email')?.touched">Invalid email or mobile number</small>
+                            </div>
+                            <div class="form-row">
+                                <input type="password" formControlName="password" placeholder="Password">
+                            </div>
+                            <button type="submit" [disabled]="loginForm.invalid">Login</button>
+                        </div>
+                    </form>
+                    <br>
+                    <a>Forgot Password? </a>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div>
+            <mat-card class="second">
+                <mat-card-content>
+                    <p>Bank at Your Fingertips</p>
+                    <i class="fa-solid fa-building-columns"></i>
+                    
+                </mat-card-content>
+            </mat-card>
+        </div>
+ 
+</div>
