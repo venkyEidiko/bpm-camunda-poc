@@ -4,16 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.http.ProblemDetail;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Commonresponse {
-
-    List<Object> result;
-    ProblemDetail problem;
+public class Link {
+    String method;
+    String href;
+    String rel;
 }

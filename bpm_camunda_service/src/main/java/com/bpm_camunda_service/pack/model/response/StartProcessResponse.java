@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.http.ProblemDetail;
 
 import java.util.List;
 
@@ -12,8 +11,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Commonresponse {
+public class StartProcessResponse {
 
-    List<Object> result;
-    ProblemDetail problem;
+    private List<Link> links;
+    String id;
+    String definitionId;
+    String businessKey;
+    String caseInstanceId;
+    String ended;
+    String suspended;
+    String tenantId;
+
 }

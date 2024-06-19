@@ -13,7 +13,7 @@ public class WebclientConfig {
     @Bean
     public WebClient webClient(){
         return WebClient.builder()
-                .baseUrl("CamundaUrl")
+                .baseUrl("http://10.0.0.27:8080")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
 
