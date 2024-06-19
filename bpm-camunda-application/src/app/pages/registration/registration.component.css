@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+  height: 100%;
+}
+
+.page-content {
+  padding: 2%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-image: url("../../../assets/back-bank.jfif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; */
+}
+
+.page-content h2 {
+  text-align: center;
+  color: #7c4dff;
+  font-size: 24px; /* Reduce font size */
+}
+
+.form-container {
+  border-radius: 3%;
+  background-color: #7c4dff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px; /* Adjust the max width */
+}
+
+.left, .right {
+  width: 48%; /* Adjust width to fit within the container */
+  padding: 2%; /* Adjust padding as needed */
+  display: flex;
+  flex-direction: column;
+  background-color: #7c4dff;
+  color: white;
+}
+
+.left h2 {
+  color: white;
+  font-size: 20px; /* Reduce font size */
+}
+
+.left input, .left select {
+  padding: 8px 10px; /* Reduce padding */
+  border: 1px solid transparent;
+  background: transparent;
+  outline: none;
+  width: 100%; /* Make inputs responsive */
+  font-size: 14px; /* Reduce font size */
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
+  color: black;
+}
+
+.left input::placeholder {
+  color: rgb(211, 206, 206);
+  font-size: 12px; /* Reduce font size */
+}
+
+.left input:focus {
+  border-bottom: 1px solid #f3e7e7;
+}
+
+small {
+  display: block;
+  color: #c7af37;
+  margin-left: 5px; /* Reduce margin */
+  font-size: 12px; /* Reduce font size */
+}
+
+.form-row {
+  margin-bottom: 15px; /* Reduce margin */
+}
+
+.btn-primary {
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0px 6px 17px 0px rgba(0, 0, 0, 0.15);
+  width: 160px; /* Reduce width */
+  height: 30px; /* Reduce height */
+  border: none;
+  cursor: pointer;
+  color: #333;
+  font-weight: 700;
+  font-size: 14px; /* Reduce font size */
+  margin-top: 25px; /* Reduce margin */
+  margin-left: 5px; /* Reduce margin */
+}
+
+button:hover {
+  background-color: #d5d8d8;
+}
+
+.form-row-last {
+  margin-top: 50px; /* Reduce margin */
+}
+
+.password-btn {
+  border: none;
+}
+
+.input-group-append {
+  padding: 8px 10px; /* Reduce padding */
+}
+
+.form-row-password {
+  display: flex;
+  flex-direction: row;
+}
+
+.right p {
+  font-size: 24px; /* Reduce font size */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.register-logo {
+  border-radius: 50%;
+  width: 100px; /* Reduce size */
+  height: 100px; /* Reduce size */
+}
