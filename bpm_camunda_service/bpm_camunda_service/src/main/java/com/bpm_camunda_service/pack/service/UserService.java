@@ -7,6 +7,7 @@ import com.bpm_camunda_service.pack.model.response.Commonresponse;
 import com.bpm_camunda_service.pack.model.response.UserResponse;
 import com.bpm_camunda_service.pack.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ProblemDetail;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.nio.file.attribute.UserPrincipalNotFoundException;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
 
     private final UserRepository userRepository;
 

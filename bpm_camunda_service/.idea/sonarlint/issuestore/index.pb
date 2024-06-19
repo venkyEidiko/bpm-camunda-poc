@@ -9,8 +9,6 @@ Obpm_camunda_service/src/main/java/com/bpm_camunda_service/pack/entity/User.java
 Wbpm_camunda_service/src/main/java/com/bpm_camunda_service/pack/service/UserService.java,4\8\48355d7fa82d3aac8e0f2b18129fc9260b509b7d
 ç
 ]bpm_camunda_service/src/main/java/com/bpm_camunda_service/pack/repository/UserRepository.java,6\4\640b2a184a03f9cf0d2123741b2c12682505695a
-à
-Xbpm_camunda_service/src/main/java/com/bpm_camunda_service/pack/model/commonresponse.java,a\c\ac79751bdacbab6d1c627b537777a9ab07782255
 ë
 abpm_camunda_service/src/main/java/com/bpm_camunda_service/pack/model/response/commonresponse.java,4\3\437332762b05a6a07f078e28c0016461d848e912
 ë
@@ -25,3 +23,9 @@ _bpm_camunda_service/src/main/java/com/bpm_camunda_service/pack/model/response/U
 dbpm_camunda_service/src/main/java/com/bpm_camunda_service/pack/webclient_config/WebclientConfig.java,d\4\d42077a3671a1698eb0ca3103f1e02a837dc0dba
 ê
 `bpm_camunda_service/src/main/java/com/bpm_camunda_service/pack/controller/AccountController.java,9\e\9ef475ebe10ecf000f91bcf4f1f315e04bafb4e4
+£
+sbpm_camunda_service/src/main/java/com/bpm_camunda_service/pack/global_exception_handler/GlobalExceptionHandler.java,7\7\7703e69b4ffa80669b1bf6d26589500c774fe089
+ê
+`bpm_camunda_service/src/main/java/com/bpm_camunda_service/pack/BpmCamundaServiceApplication.java,2\5\257c13769bece0e8085bd246ae9605fda6b2a148
+ä
+Zbpm_camunda_service/src/main/java/com/bpm_camunda_service/pack/service/CamundaMethods.java,e\d\eda3e4a6302f80151010f90aa46908a68340960c
