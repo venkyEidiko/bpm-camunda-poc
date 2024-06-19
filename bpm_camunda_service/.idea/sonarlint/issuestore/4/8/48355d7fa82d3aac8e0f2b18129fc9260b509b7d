@@ -1,14 +1,0 @@
-
-ˆ	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(„×Š8µ÷ÏÛ‚2J$2a31c91c-8666-4a4b-88c9-7a67a8cf1e0f
-	java:S112+"FDefine and throw a dedicated exception instead of using a generic one.(²˜í…ıÿÿÿÿ8¶÷ÏÛ‚2J$d90be038-d23b-4eae-9eaa-50e52518cfd8
-¥
-java:S1192"]Define a constant instead of duplicating this literal "Invalid Email id or password" 3 times.(ğ·îüÿÿÿÿ8…óÚ‚2J$0e2122b6-1995-49d3-902b-c3d37a3282e4
-„
-java:S1854"<Remove this useless assignment to local variable "response".(å´±Óıÿÿÿÿ8óÚ‚2J$dc7ba4df-cfce-4225-a416-108f32607dc2
-u
-java:S1481"-Remove this unused "response" local variable.(å´±Óıÿÿÿÿ8‘óÚ‚2J$69bcea10-34e0-47bb-94fd-19df8ba1b762
-›
-java:S1128
-"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8­ŸåÛ‚2J$4f7d2025-a822-41da-b2c9-d54c9b65f6e3
-†
-java:S1128"CRemove this unused import 'org.springframework.http.ProblemDetail'.(ÌÿÍ—8…øÏÛ‚2J$6335a9e5-af04-4d80-b624-dfc3552b26b3
