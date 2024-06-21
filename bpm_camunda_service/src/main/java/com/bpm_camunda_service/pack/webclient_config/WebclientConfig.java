@@ -13,7 +13,7 @@ public class WebclientConfig {
     @Bean
     public WebClient webClient(){
         return WebClient.builder()
-                .baseUrl("http://10.0.0.27:8080")
+                .baseUrl("http://10.0.0.27:8080/engine-rest")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
 
