@@ -28,5 +28,10 @@ public class Loans {
     Date startTime;
     String Stage;
     String processDefinitionKey;
+    String empName;
+    String empId;
+    String empEmail;
+    Long empPhone;
+    String empDesignation;
 
 }

@@ -1,6 +1,7 @@
 package com.bpm_camunda_service.pack.service;
 
 import com.bpm_camunda_service.pack.entity.Loan;
+import com.bpm_camunda_service.pack.entity.User;
 import com.bpm_camunda_service.pack.model.camundaVariable.CamundaVariables;
 import com.bpm_camunda_service.pack.model.request.ClaimRequest;
 import com.bpm_camunda_service.pack.model.request.LoanRequestModel;
@@ -9,6 +10,7 @@ import com.bpm_camunda_service.pack.model.response.Loans;
 import com.bpm_camunda_service.pack.model.response.StartProcessResponse;
 import com.bpm_camunda_service.pack.model.response.TaskCamundaResponse;
 import com.bpm_camunda_service.pack.repository.LoanRepository;
+import com.bpm_camunda_service.pack.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ public class LoanService {
     private final WebClientService webClientService;
     @Autowired
     private  LoanRepository loanRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public static int SEQ = 0;
     public static String START_PROCESS_URL = "/process-definition/key/Loan-Process/start";
@@ -43,6 +47,7 @@ public class LoanService {
         camundaVariables.setBusinessKey(businessKey);
         StartProcessResponse response = webClientService.postCall(START_PROCESS_URL,camundaVariables, StartProcessResponse.class);
         Loan loan = Loan.builder()
+                .empIdProcessStart(request.getEmpId())
                 .name(request.getName())
                 .age(request.getAge())
                 .processInstanceId(response.getId())
@@ -63,7 +68,6 @@ public class LoanService {
     public List<Loans> getTask(UnAssignRequest request){
         List<Loans> loanList = new ArrayList<>();
         TaskCamundaResponse[] response = webClientService.postCall(GET_UNASSIGN_TASK, request, TaskCamundaResponse[].class);
-        System.out.println(response.length);
         loanList = generateLoans(response);
         return loanList;
     }
@@ -88,8 +92,8 @@ public class LoanService {
     private List<Loans> generateLoans(TaskCamundaResponse[] tasks){
         List<Loans> loans = new ArrayList<>();
         for(TaskCamundaResponse task : tasks){
-            System.out.println(task.getProcessInstanceId());
             Loan loan = loanRepository.findByProcessInstanceId(task.getProcessInstanceId()).orElse(null);
+            User emp =
             Loans loanItem = getLoansObject(loan, task);
             loans.add(loanItem);
         }
