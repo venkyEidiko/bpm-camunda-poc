@@ -1,6 +1,5 @@
 package com.bpm_camunda_service.pack.model.response;
 
-import com.bpm_camunda_service.pack.model.request.LoanRequestModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,10 +11,12 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Loans {
+public class TaskDetails {
 
-    LoanRequestModel loanDetails;
-    TaskDetails taskDetails;
-    UserResponse userDetails;
+    String processInstanceId;
+    String id;
+    Date startTime;
+    String Stage;
+    String processDefinitionKey;
 
 }

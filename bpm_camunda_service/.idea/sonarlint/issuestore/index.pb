@@ -51,3 +51,5 @@ Jsrc/main/java/com/bpm_camunda_service/pack/model/request/ClaimRequest.java,c\e
 Rsrc/main/java/com/bpm_camunda_service/pack/model/response/TaskCamundaResponse.java,b\5\b5b593623e5311e985b02e3710f847b2c8c75c21
 t
 Dsrc/main/java/com/bpm_camunda_service/pack/model/response/Loans.java,8\8\8861f34406a6dfe6aa8e1e4ed8fd5df7dee1893d
+z
+Jsrc/main/java/com/bpm_camunda_service/pack/model/response/TaskDetails.java,6\7\67257e3cfa43168a854f61f65c63f5a80a53b469

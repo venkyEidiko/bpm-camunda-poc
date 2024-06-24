@@ -1,5 +1,7 @@
 package com.bpm_camunda_service.pack.controller;
 
+import com.bpm_camunda_service.pack.model.request.ClaimRequest;
+import com.bpm_camunda_service.pack.model.request.ClaimRequestCamunda;
 import com.bpm_camunda_service.pack.model.request.LoanRequestModel;
 import com.bpm_camunda_service.pack.model.request.UnAssignRequest;
 import com.bpm_camunda_service.pack.model.response.Commonresponse;
@@ -40,15 +42,15 @@ public class LoanController {
         return commonresponse;
     }
 
-    @GetMapping("/claim/{processInstanceId}")
-    public Commonresponse claimTask(@PathVariable String processInstanceId){
-        String msg = loanService.claimTask(processInstanceId);
+    @GetMapping("/claim")
+    public Commonresponse claimTask(@RequestBody ClaimRequest request){
+        String msg = loanService.claimTask(request);
         return Commonresponse.builder().result(Arrays.asList(msg)).build();
     }
 
-    @GetMapping("/unclaim/{processInstanceId}")
-    public Commonresponse unClaimTask(@PathVariable String processInstanceId){
-        String msg = loanService.unClaimTask(processInstanceId);
+    @GetMapping("/unclaim/{taskId}")
+    public Commonresponse unClaimTask(@PathVariable String taskId){
+        String msg = loanService.unClaimTask(taskId);
         return Commonresponse.builder().result(Arrays.asList(msg)).build();
     }
 

@@ -4,14 +4,14 @@ import com.bpm_camunda_service.pack.entity.Loan;
 import com.bpm_camunda_service.pack.entity.User;
 import com.bpm_camunda_service.pack.model.camundaVariable.CamundaVariables;
 import com.bpm_camunda_service.pack.model.request.ClaimRequest;
+import com.bpm_camunda_service.pack.model.request.ClaimRequestCamunda;
 import com.bpm_camunda_service.pack.model.request.LoanRequestModel;
 import com.bpm_camunda_service.pack.model.request.UnAssignRequest;
-import com.bpm_camunda_service.pack.model.response.Loans;
-import com.bpm_camunda_service.pack.model.response.StartProcessResponse;
-import com.bpm_camunda_service.pack.model.response.TaskCamundaResponse;
+import com.bpm_camunda_service.pack.model.response.*;
 import com.bpm_camunda_service.pack.repository.LoanRepository;
 import com.bpm_camunda_service.pack.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +25,7 @@ import java.util.List;
 public class LoanService {
 
     private final WebClientService webClientService;
+    private final ModelMapper modelMapper;
     @Autowired
     private  LoanRepository loanRepository;
     @Autowired
@@ -46,20 +47,9 @@ public class LoanService {
         camundaVariables.setVariables(request.getVarablesMap());
         camundaVariables.setBusinessKey(businessKey);
         StartProcessResponse response = webClientService.postCall(START_PROCESS_URL,camundaVariables, StartProcessResponse.class);
-        Loan loan = Loan.builder()
-                .empIdProcessStart(request.getEmpId())
-                .name(request.getName())
-                .age(request.getAge())
-                .processInstanceId(response.getId())
-                .businessKey(response.getBusinessKey())
-                .newLoanAmount(request.getNewLoanAmount())
-                .existingLoan(request.getExistingLoan())
-                .salary(request.getSalary())
-                .gender(request.getGender())
-                .ternure(request.getTernure())
-                .rateOfInterest(request.getRateOfInterest())
-                .company(request.getCompany())
-                .build();
+        Loan loan = modelMapper.map(request, Loan.class);
+        loan.setBusinessKey(response.getBusinessKey());
+        loan.setProcessInstanceId(response.getId());
         loanRepository.save(loan);
         return response;
 
@@ -72,14 +62,17 @@ public class LoanService {
         return loanList;
     }
 
-    public String claimTask(String processInstanceId){
-        String url = String.format(CLAIM_TASK,processInstanceId);
-        webClientService.postCall(url,new ClaimRequest(),Object.class);
+    public String claimTask(ClaimRequest request){
+        String url = String.format(CLAIM_TASK,request.getTaskId());
+        webClientService.postCall(url,new ClaimRequestCamunda(),Object.class);
+        Loan loan = loanRepository.findByProcessInstanceId(request.getProcessInstanceId()).orElseThrow();
+        loan.setTaskId(request.getTaskId());
+        loanRepository.save(loan);
         return "Successfully Claimed";
     }
 
-    public String unClaimTask(String processInstanceId){
-        String url = String.format(UNCLAIM_TASK,processInstanceId);
+    public String unClaimTask(String taskId){
+        String url = String.format(UNCLAIM_TASK,taskId);
         webClientService.postCall(url,null,Object.class);
         return "Successfully Unclaimed";
     }
@@ -93,30 +86,29 @@ public class LoanService {
         List<Loans> loans = new ArrayList<>();
         for(TaskCamundaResponse task : tasks){
             Loan loan = loanRepository.findByProcessInstanceId(task.getProcessInstanceId()).orElse(null);
-            User emp =
-            Loans loanItem = getLoansObject(loan, task);
+            User emp ;
+            if(task.getName().equals("Approval 1")){
+                emp = userRepository.findByEmpId(loan.getEmpIdProcessStart());
+            }
+            else{
+                emp = userRepository.findByEmpId(loan.getEmIdApproval1());
+            }
+            Loans loanItem = getLoansObject(loan, task,emp);
             loans.add(loanItem);
         }
         return loans;
     }
 
-    private Loans getLoansObject(Loan loan, TaskCamundaResponse task) {
+    private Loans getLoansObject(Loan loan, TaskCamundaResponse task,User emp) {
+
+        TaskDetails taskDetails = modelMapper.map(task,TaskDetails.class);
+        LoanRequestModel LoanDetails = modelMapper.map(loan,LoanRequestModel.class);
+        UserResponse userDetails = modelMapper.map(emp,UserResponse.class);
+        taskDetails.setStage(task.getName());
         return Loans.builder()
-                .name(loan.getName())
-                .age(loan.getAge())
-                .gender(loan.getGender())
-                .company(loan.getCompany())
-                .salary(loan.getSalary())
-                .existingLoan(loan.getExistingLoan())
-                .newLoanAmount(loan.getNewLoanAmount())
-                .ternure(loan.getTernure())
-                .rateOfInterest(loan.getRateOfInterest())
-                .processInstanceId(task.getProcessInstanceId())
-                .taskId(task.getId())
-                .businessKey(loan.getBusinessKey())
-                .startTime(task.getStartTime())
-                .Stage(task.getName())
-                .processDefinitionKey(task.getProcessDefinitionKey())
+                .taskDetails(taskDetails)
+                .loanDetails(LoanDetails)
+                .userDetails(userDetails)
                 .build();
     }
 

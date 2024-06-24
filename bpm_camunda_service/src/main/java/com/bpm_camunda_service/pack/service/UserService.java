@@ -7,6 +7,7 @@ import com.bpm_camunda_service.pack.model.response.Commonresponse;
 import com.bpm_camunda_service.pack.model.response.UserResponse;
 import com.bpm_camunda_service.pack.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ProblemDetail;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class UserService {
 
 
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
 
 
     public String register(RegisterRequest request) throws Exception{
@@ -26,17 +28,7 @@ public class UserService {
         if(userRepository.existsByEmail(request.getEmail())){
          throw new UserPrincipalNotFoundException("Invalid Email id or password");
         }
-        User user = User.builder()
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .email(request.getEmail())
-                .empId(request.getEmpId())
-                .designation(request.getDesignation())
-                .phoneNu(request.getPhoneNu())
-                .salary(request.getSalary())
-                .password(request.getPassword())
-                .build();
-
+        User user = modelMapper.map(request,User.class);
         userRepository.save(user);
         return "Registerd Successfully";
     }
@@ -50,15 +42,8 @@ public class UserService {
             throw new UserPrincipalNotFoundException("Invalid Email id or password");
         }
         else{
-            return UserResponse.builder()
-                    .firstName(user.getFirstName())
-                    .lastName(user.getLastName())
-                    .email(user.getEmail())
-                    .salary(user.getSalary())
-                    .phoneNu(user.getPhoneNu())
-                    .designation(user.getDesignation())
-                    .empId(user.getEmpId())
-                    .build();
+            UserResponse response = modelMapper.map(user,UserResponse.class);
+            return response;
         }
     }
 
