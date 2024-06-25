@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProcessService {
-  processUrl="http://10.0.0.53:8081/loan/loanRequest"
+  // processUrl="http://10.0.0.53:8081/loan/loanRequest"
+
+  processUrl="http://localhost:8080/loan/loanRequest"
 
   constructor(private http:HttpClient) { }
 

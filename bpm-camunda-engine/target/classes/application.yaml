@@ -6,7 +6,8 @@ camunda.bpm:
     password: admin
   filter:
     create: All tasks
-
+server:
+  port: 1010
 
 camunda:
   bpm:
