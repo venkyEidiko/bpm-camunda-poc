@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "8ce43aba-ed81-44d7-b646-d2f16ac43b91",
+		"name": "bpm-camunda-poc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34362260"
+	},
+	"item": [
+		{
+			"name": "Start Process",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"variables\": {\r\n    \"name\": {\r\n      \"value\": \"Venkat\",\r\n      \"type\": \"String\"\r\n    },\r\n    \"age\": {\r\n      \"value\": 27,\r\n      \"type\": \"Integer\"\r\n    },\r\n    \"gender\": {\r\n      \"value\": \"male\",\r\n      \"type\": \"String\"\r\n    },\r\n    \"company\": {\r\n      \"value\": \"Eidiko\",\r\n      \"type\": \"String\"\r\n    },\r\n    \"salary\": {\r\n      \"value\": 35000.00,\r\n      \"type\": \"Double\"\r\n    },\r\n    \"existingLoan\": {\r\n      \"value\": 200000.00,\r\n      \"type\": \"Double\"\r\n    },\r\n    \"newLoanAmount\": {\r\n      \"value\": 100000.00,\r\n      \"type\": \"Double\"\r\n    },\r\n    \"ternure\": {\r\n      \"value\": 2,\r\n      \"type\": \"Double\"\r\n    },\r\n    \"rateOfInterest\": {\r\n      \"value\": 7,\r\n      \"type\": \"Double\"\r\n    }\r\n  },\r\n  \"businessKey\": \"5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/process-definition/key/Loan-Process/start",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"process-definition",
+						"key",
+						"Loan-Process",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get UnAssign Tasks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"unassigned\":\"true\",\r\n    // \"taskId\":\"13e40bfa-32bb-11ef-bc5c-00919e9b59fb\"\r\n    // \"processDefinitionKey\":\"Loan-Process\",\r\n    \"taskDefinitionKeyIn\":[\"approval1\"]\r\n\r\n    // \"taskDefinitionKey\":\"approval1\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Assign Task Count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/history/task/count?taskAssignee=admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"history",
+						"task",
+						"count"
+					],
+					"query": [
+						{
+							"key": "taskAssignee",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Tasks by Activity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/history/task?taskAssignee=admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"history",
+						"task"
+					],
+					"query": [
+						{
+							"key": "taskAssignee",
+							"value": "admin"
+						},
+						{
+							"key": "taskDefinitionKey",
+							"value": "Activity_0f0sglv",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Claim Task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": \"Admin Admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/task/ff47bb95-32c2-11ef-b88e-00919e9b59fb/claim",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"task",
+						"ff47bb95-32c2-11ef-b88e-00919e9b59fb",
+						"claim"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unclaim Task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/task/930666e5-32be-11ef-bc5c-00919e9b59fb/unclaim",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"task",
+						"930666e5-32be-11ef-bc5c-00919e9b59fb",
+						"unclaim"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "engine-rest/task/TaskId/complete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"withVariablesInReturn\":\"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/task/58a61896-32be-11ef-bc5c-00919e9b59fb/complete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"task",
+						"58a61896-32be-11ef-bc5c-00919e9b59fb",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get-API-assignTasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/engine-rest/task?taskAssignee=demo&taskDefinitionKey=approval1&assigned=true",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"task"
+					],
+					"query": [
+						{
+							"key": "taskAssignee",
+							"value": "demo"
+						},
+						{
+							"key": "taskDefinitionKey",
+							"value": "approval1"
+						},
+						{
+							"key": "assigned",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get-Assign-Tasks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n\r\n\r\n{\r\n   \r\n    // \"taskAssignee\": \"demo\",\r\n    \"assigned\":\"true\",    \r\n    \"taskDefinitionKey\":\"approval1\"\r\n    // \"taskName\":\"Approval 1\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/engine-rest/task",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"task"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
