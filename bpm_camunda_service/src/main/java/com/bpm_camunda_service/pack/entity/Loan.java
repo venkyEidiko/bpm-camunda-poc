@@ -18,7 +18,9 @@ public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-
+    int empIdProcessStart;
+    int emIdApproval1;
+    int empIdApproval2;
     String processInstanceId;
     String taskId;
     String businessKey;

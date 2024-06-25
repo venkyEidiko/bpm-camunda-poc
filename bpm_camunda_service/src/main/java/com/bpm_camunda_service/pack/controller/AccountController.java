@@ -24,6 +24,7 @@ public class AccountController {
 
     @PostMapping("/register")
     public Commonresponse register(@RequestBody RegisterRequest request) throws Exception{
+        System.out.println(request);
         String message = userService.register(request);
         response = new Commonresponse();
         response.setResult(Arrays.asList(message));
@@ -36,5 +37,10 @@ public class AccountController {
         UserResponse loginResponse = userService.login(request);
         response.setResult(Arrays.asList(loginResponse));
         return  response;
+    }
+
+    @GetMapping("/hello")
+    public String test(){
+        return "hello";
     }
 }

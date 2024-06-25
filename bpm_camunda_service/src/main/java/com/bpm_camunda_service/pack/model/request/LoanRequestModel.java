@@ -20,6 +20,7 @@ public class LoanRequestModel {
     String gender;
     String company;
     Double salary;
+    int empId;
     double existingLoan;
     double newLoanAmount;
     double ternure;
