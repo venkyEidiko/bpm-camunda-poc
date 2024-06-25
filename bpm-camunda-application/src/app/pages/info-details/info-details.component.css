@@ -1,0 +1,58 @@
+.information-container {
+    border: 1px solid #9575cd;
+    margin: 100px auto; 
+    width: 100%;
+    min-width: 750px;
+    box-sizing: border-box; 
+   background-image: linear-gradient(to bottom, #fff8e1,#ffe0b2);
+    box-shadow: 0 4px 8px #d1c4e9;
+    
+}
+
+.section1 {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    border: 1px solid #9575cd;
+    padding: 10px; 
+   height: auto;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #9575cd;
+    padding: 10px; 
+    height: auto;
+}
+
+.section2 {
+    border: 1px solid #9575cd;
+    padding: 10px; 
+    height: auto;
+}
+.child1{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    
+}
+h3{
+   /* opacity: 0.7; */
+     color: #e65100;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+p{
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    opacity: 0.6;
+}
+.loan-details{
+    display: flex;
+    flex-direction: row;
+    gap:40px;
+} 
+

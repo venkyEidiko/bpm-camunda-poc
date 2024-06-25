@@ -1,0 +1,56 @@
+.dialog-container{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+    height: 100vh;
+
+}
+.heading{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    color:rebeccapurple;
+}
+.content input , select{
+    padding: 12px 12px;
+    border: 1px solid transparent;
+    background: transparent;
+    outline: none;
+    width: 300px;
+    font-size: 15px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    
+}
+.content{
+    display: flex;
+    align-items: center;
+}
+.content input::placeholder{
+    font-size: 12px;
+}
+small {
+    display: block;
+    color: #fcba03;
+    margin-left: 0px;
+  }
+  .form-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+button{
+    background:#7c4dff;
+    border-radius: 25px;
+    box-shadow: 0px 6px 17px 0px rgba(0, 0, 0, 0.15);
+    width: 180px;
+    height: 35px;
+    border: none;
+    margin: 45px;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    
+}
