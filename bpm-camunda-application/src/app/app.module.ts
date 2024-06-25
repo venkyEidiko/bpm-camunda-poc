@@ -12,6 +12,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AssignComponent } from './tasks/assign/assign.component';
+import { UnassignComponent } from './tasks/unassign/unassign.component';
+import { TaskComponent } from './tasks/task/task.component';
+import { TableComponent } from './components/table/table.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { InfoDetailsComponent } from './pages/info-details/info-details.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -21,6 +33,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     LoginComponent,
     RegistrationComponent,
+    DashboardComponent,
+    AssignComponent,
+    UnassignComponent,
+    TaskComponent,
+    TableComponent,
+    InfoDetailsComponent,
+    DialogComponent,
   
   ],
   imports: [
@@ -29,7 +48,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatDialogModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
