@@ -7,6 +7,7 @@ import { AssignComponent } from './tasks/assign/assign.component';
 import { UnassignComponent } from './tasks/unassign/unassign.component';
 import { TaskComponent } from './tasks/task/task.component';
 import { InfoDetailsComponent } from './pages/info-details/info-details.component';
+import { Approval1Component } from './components/approval1/approval1.component';
 
 const routes: Routes = [
   {
@@ -18,14 +19,19 @@ const routes: Routes = [
   {
     path:'dashboard',component:DashboardComponent,children:[
      {
-      path:'task',component:TaskComponent,children:[
+      path:'task',component:TaskComponent,
+      children:[
         {
           path:'unassign',component:UnassignComponent
         },
         {
           path:'assign',component:AssignComponent
+        },
+        {
+          path:'approval2',component:Approval1Component
         }
-      ]
+      ],
+     
      },
      {
       path:'information-details',component:InfoDetailsComponent

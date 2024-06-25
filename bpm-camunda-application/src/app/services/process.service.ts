@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProcessService {
-  processUrl="http://10.0.0.53:8081/loan/loanRequest"
+  processUrl="http://10.0.0.51:8081/loan/loanRequest";
 
   constructor(private http:HttpClient) { }
 
-  process(data: any): Observable<any> {
+  process(data:any): Observable<any> {
+    console.log("dgfgfg",data);
     return this.http.post<any>(this.processUrl, data);
   }
 }

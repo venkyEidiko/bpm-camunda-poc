@@ -9,8 +9,8 @@ import { tap } from 'rxjs/operators';
 export class LoginService {
   private employeeData: any = null;
 
-  url = "http://10.0.0.53:8081/api/register";
-  loginUrl = "http://10.0.0.53:8081/api/login";
+  url = "http://10.0.0.51:8081/api/register";
+  loginUrl = "http://10.0.0.51:8081/api/login";
 
   constructor(private http: HttpClient) {}
 

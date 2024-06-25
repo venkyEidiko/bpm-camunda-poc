@@ -24,6 +24,7 @@ import { InfoDetailsComponent } from './pages/info-details/info-details.componen
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { Approval1Component } from './components/approval1/approval1.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     TableComponent,
     InfoDetailsComponent,
     DialogComponent,
+    Approval1Component,
   
   ],
   imports: [
