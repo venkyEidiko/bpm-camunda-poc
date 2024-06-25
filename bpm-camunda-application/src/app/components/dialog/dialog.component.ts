@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ProcessService } from 'src/app/services/process.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
+import { FormValues, ProcessData } from 'src/app/components/dialog/dialoginter'
 
 @Component({
   selector: 'app-dialog',
@@ -41,42 +42,40 @@ export class DialogComponent implements OnInit {
     }
   }
 
-  onSingup() {
+  onSubmit() {
     if (!this.user) {
       console.error('Cannot process form, employee data is missing');
       return;
     }
 
-    const formValues = this.processForm.value;
+    if (this.processForm.valid) {
+      const formValues: FormValues = this.processForm.value;
+    
+      const processData: ProcessData = {
+        ...formValues,
+        empId: this.user.empId
+      };
+      console.log(processData)
 
-    const processData = {
-      name: formValues.name,
-      empId: this.user.empId,
-      age: formValues.age,
-      gender: formValues.gender,
-      company: formValues.company,
-      salary: formValues.salary,
-      existingLoan: formValues.existingLoan,
-      newLoanAmount: formValues.newLoanAmount,
-      ternure: formValues.ternure,
-      rateOfInterest: formValues.rateOfInterest
-    };
-
-    this.processService.process(processData).subscribe(
-      (response: any) => {
-        if (response.problem == null) {
-          console.log('posted successfully');
-        } else {
-          console.log(response.problem);
+      this.processService.process(processData).subscribe(
+        
+        (response: any) => {
+          console.log("into service");
+          if (response.problem===null) {
+            console.log(response.problem)
+            console.log('posted successfully');
+            this.dialogRef.close();
+          } else {
+            console.error('Response error:', response.problem);
+          }
+        },
+        (error: any) => {
+          console.error('Process error:', error);
         }
-      },
-      (error: any) => {
-        console.log('process error', error);
-      }
-    );
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
+      );
+    } else {
+      this.processForm.markAllAsTouched();
+      console.warn('Form is invalid');
+    }
   }
 }
