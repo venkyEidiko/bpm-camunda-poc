@@ -1,2 +1,4 @@
+bpm\camunda\engine\entity\Loan.class
 bpm\camunda\engine\delegate\GenerateEmi.class
 bpm\camunda\engine\Application.class
+bpm\camunda\engine\entity\Loan$LoanBuilder.class

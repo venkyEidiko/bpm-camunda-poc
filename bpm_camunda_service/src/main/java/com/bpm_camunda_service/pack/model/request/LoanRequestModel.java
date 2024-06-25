@@ -25,6 +25,7 @@ public class LoanRequestModel {
     double newLoanAmount;
     double ternure;
     double rateOfInterest;
+    double emiPerMonth;
 
     public Map<String,Object> getVarablesMap(){
         Map<String, Object> map = new HashMap<>();

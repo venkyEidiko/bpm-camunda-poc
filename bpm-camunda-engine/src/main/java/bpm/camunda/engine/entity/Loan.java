@@ -1,4 +1,4 @@
-package com.bpm_camunda_service.pack.entity;
+package bpm.camunda.engine.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

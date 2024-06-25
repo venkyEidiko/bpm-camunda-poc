@@ -6,7 +6,8 @@ camunda.bpm:
     password: admin
   filter:
     create: All tasks
-
+server:
+  port: 1010
 
 camunda:
   bpm:
@@ -22,7 +23,7 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
 
 #    properties:
 #      hibernate:
