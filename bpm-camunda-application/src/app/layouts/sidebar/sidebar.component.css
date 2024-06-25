@@ -1,0 +1,44 @@
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    background: linear-gradient(180deg, #8255fc 0%, #b48df8 100%);
+}
+
+.approval {
+    margin: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    
+}
+.approval:hover{
+    background-color: #ac79fd;
+    
+    color: orange;
+    
+}
+
+.approval i {
+    font-size:20px; 
+}
+
+.approval p {
+    margin: 0;
+    font-size: medium;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+.header-img{
+    width: 150px;
+    height: 80px;
+    padding: 20px;
+    opacity: 0.9;
+    
+}
+.header-img:hover{
+    opacity: 0.5;
+}

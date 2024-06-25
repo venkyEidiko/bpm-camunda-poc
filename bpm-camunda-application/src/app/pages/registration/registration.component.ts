@@ -21,7 +21,8 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.registrationForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      lastName:['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       email: ['', [Validators.required, Validators.email, Validators.pattern(/@eidiko-india\.com$/)]],
       phoneNu: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
       empId: ['', [Validators.required, Validators.max(9999)]],
@@ -49,7 +50,8 @@ export class RegistrationComponent implements OnInit {
     const formValues = this.registrationForm.value;
 
     const registrationData = {
-      name: formValues.name,
+      firstName:formValues.firstName,
+      lastName:formValues.lastName,
       email: formValues.email,
       phoneNu: formValues.phoneNu,
       empId: formValues.empId,
@@ -57,16 +59,16 @@ export class RegistrationComponent implements OnInit {
       salary: formValues.salary,
       password: formValues.password
     };
+console.log(registrationData);
 
-    // console.log('Registration Data:', registrationData); 
     this.loginService.register(registrationData).subscribe(
       (response: any) => {
-        if (response.error == null) {
+        if (response.problem == null) {
           console.log("Regsitered successfully")
           alert(response.result[0])
           this.router.navigate(['/login']);
         } else {
-          console.log(response.error);
+          console.log(response.problem);
         }
       },
       (error: any) => {
@@ -75,7 +77,5 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
-  // onLogin() {
-  //   this.router.navigate(['/login']);
-  // }
+
 }
