@@ -43,3 +43,13 @@ v
 Fsrc/main/java/com/bpm_camunda_service/pack/service/CamundaMethods.java,f\f\ffdf6ee9d5daf15b5f283b89e21b577942249321
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+}
+Msrc/main/java/com/bpm_camunda_service/pack/model/request/UnAssignRequest.java,9\3\93f1047f076360eb96e685f121ccdd233cb119c6
+z
+Jsrc/main/java/com/bpm_camunda_service/pack/model/request/ClaimRequest.java,c\e\ce2e34c01fc3ebd9d798f79a627d5881720fdce7
+‚
+Rsrc/main/java/com/bpm_camunda_service/pack/model/response/TaskCamundaResponse.java,b\5\b5b593623e5311e985b02e3710f847b2c8c75c21
+t
+Dsrc/main/java/com/bpm_camunda_service/pack/model/response/Loans.java,8\8\8861f34406a6dfe6aa8e1e4ed8fd5df7dee1893d
+z
+Jsrc/main/java/com/bpm_camunda_service/pack/model/response/TaskDetails.java,6\7\67257e3cfa43168a854f61f65c63f5a80a53b469
