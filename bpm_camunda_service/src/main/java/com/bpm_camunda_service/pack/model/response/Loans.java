@@ -14,7 +14,7 @@ import java.util.Date;
 @Builder
 public class Loans {
 
-    LoanRequestModel loanDetails;
+    LoanDetails loanDetails;
     TaskDetails taskDetails;
     UserResponse userDetails;
 
