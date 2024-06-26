@@ -15,7 +15,7 @@ public class LoanService {
 
     public void updateEmi(double emiPerMonth,String businessKey){
     Loan loan = loanRepository.findByBusinessKey(businessKey);
-    if(Objects.isNull(emiPerMonth)){
+    if(!Objects.isNull(loan)){
         loan.setEmiPerMonth(emiPerMonth);
         loanRepository.save(loan);
     }

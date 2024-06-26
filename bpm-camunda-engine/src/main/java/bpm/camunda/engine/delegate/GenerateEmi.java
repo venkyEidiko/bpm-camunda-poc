@@ -14,8 +14,7 @@ import java.util.logging.Logger;
 public class GenerateEmi implements JavaDelegate {
 
     Logger logger = Logger.getLogger(GenerateEmi.class.getName());
-    @Autowired
-    LoanService loanService;
+
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
@@ -54,7 +53,7 @@ public class GenerateEmi implements JavaDelegate {
                 logger.warning("You are eligible fo the Loan Request for {} "+ newLoanAMount +" and EMI is per month ::"+emiPerMonth );
 
                 delegateExecution.setVariable("emiPerMonth",Double.valueOf(String.valueOf(emiPerMonth)));
-                loanService.updateEmi(emiPerMonth, delegateExecution.getBusinessKey());
+
             }else{
                 logger.warning("You loan amount should be less then Remaining Amount is {} "+ finalRemainingAmount );
             }
