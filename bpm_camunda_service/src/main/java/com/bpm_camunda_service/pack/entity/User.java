@@ -21,7 +21,7 @@ public class User {
     String lastName;
     String email;
     long phoneNu;
-    String empId;
+    int empId;
     String designation;
     double salary;
     String password;

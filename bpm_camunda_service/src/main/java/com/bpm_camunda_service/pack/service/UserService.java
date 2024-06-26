@@ -47,4 +47,8 @@ public class UserService {
         }
     }
 
+    public User getById(int id){
+        return userRepository.findByEmpId(id);
+    }
+
 }

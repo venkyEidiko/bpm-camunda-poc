@@ -1,9 +1,6 @@
 package com.bpm_camunda_service.pack.controller;
 
-import com.bpm_camunda_service.pack.model.request.ClaimRequest;
-import com.bpm_camunda_service.pack.model.request.ClaimRequestCamunda;
-import com.bpm_camunda_service.pack.model.request.LoanRequestModel;
-import com.bpm_camunda_service.pack.model.request.UnAssignRequest;
+import com.bpm_camunda_service.pack.model.request.*;
 import com.bpm_camunda_service.pack.model.response.Commonresponse;
 import com.bpm_camunda_service.pack.model.response.Loans;
 import com.bpm_camunda_service.pack.model.response.StartProcessResponse;
@@ -32,10 +29,18 @@ public class LoanController {
                 .build();
     }
 
-    @GetMapping("/unassigntask/{unassign}")
-    public Commonresponse getUnAssignTask(@PathVariable boolean unassign){
-        UnAssignRequest request = new UnAssignRequest(unassign);
-        List<Loans> loans = loanService.getTask(request);
+    @PostMapping("/unassigntask")
+    public Commonresponse getUnAssignTask(@RequestBody UnAssignRequest request){
+        List<Loans> loans = loanService.getUnassignTask(request);
+        System.out.println("loans - "+loans);
+        Commonresponse commonresponse = Commonresponse.builder().result(new ArrayList<>()).build();
+        commonresponse.getResult().add(loans);
+        return commonresponse;
+    }
+
+    @PostMapping("/assigntask")
+    public Commonresponse getAssignTask(@RequestBody AssigntaskRequest request){
+        List<Loans> loans = loanService.getAssignTask(request);
         System.out.println("loans - "+loans);
         Commonresponse commonresponse = Commonresponse.builder().result(new ArrayList<>()).build();
         commonresponse.getResult().add(loans);
@@ -60,6 +65,11 @@ public class LoanController {
                 Commonresponse.builder()
                         .result(Arrays.asList(loanService.getTaskCount()))
                         .build();
+    }
+    @PostMapping("/task/complete/{taskId}")
+    public Commonresponse completeTask(@PathVariable String taskId){
+        String msg = loanService.completeTask(taskId);
+        return Commonresponse.builder().result(Arrays.asList(msg)).build();
     }
 
 }

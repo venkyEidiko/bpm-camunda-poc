@@ -10,30 +10,28 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TaskCamundaResponse {
-    String id;
-    String processDefinitionKey;
-    String processDefinitionId;
-    String processInstanceId;
-    String executionId;
-    String caseDefinitionKey;
-    String caseDefinitionId;
-    String caseInstanceId;
-    String caseExecutionId;
-    String activityInstanceId;
-    String name;
-    String description;
-    String deleteReason;
-    String owner;
-    String assignee;
-    Date startTime;
-    Date endTime;
-    String duration;
-    String taskDefinitionKey;
-    int priority;
-    String due;
-    String parentTaskId;
-    String followUp;
-    String tenantId;
-    String removalTime;
-    String rootProcessInstanceId;
+
+        String id;
+                String name;
+                String assignee;
+                Date created;
+                String due;
+                String followUp;
+                Date lastUpdated;
+                String delegationState;
+                String description;
+                String executionId;
+                String owner;
+                String parentTaskId;
+                int priority;
+                String processDefinitionId;
+                String processInstanceId;
+                String taskDefinitionKey;
+                String caseExecutionId;
+                String caseInstanceId;
+                String caseDefinitionId;
+                String suspended;
+                String formKey;
+                String camundaFormRef;
+                String tenantId;
 }

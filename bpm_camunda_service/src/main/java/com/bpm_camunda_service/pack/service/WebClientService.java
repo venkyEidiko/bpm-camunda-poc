@@ -41,6 +41,16 @@ public class WebClientService {
                 .bodyToMono(responseType);
         return response.block();
     }
+
+    public void postCall(String url){
+        this.webClient.post()
+                .uri(url)
+                .retrieve()
+                .onStatus(HttpStatusCode::isError, result -> {
+                    return Mono.error(new Exception("Failed to call an API"));
+                });
+    }
+
     public <T> T getCall(String url, Class<T> responseType){
         Mono<T> response = this.webClient.get()
                 .uri(url)
