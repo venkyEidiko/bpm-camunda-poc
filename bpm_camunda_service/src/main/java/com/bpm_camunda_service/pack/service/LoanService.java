@@ -33,7 +33,7 @@ public class LoanService {
     public static String START_PROCESS_URL = "/process-definition/key/Loan-Process/start";
     public static  String GET_UNASSIGN_TASK = "/task";
     public static String CLAIM_TASK = "/task/%s/claim";
-    public static String UNCLAIM_TASK = "task/%s/unclaim";
+    public static String UNCLAIM_TASK = "/task/%s/unclaim";
     public static String TASK_COUNT = "/history/task/count?taskAssignee=admin";
     public static String COMPLETE_TASK = "/task/%s/complete";
 
@@ -84,6 +84,7 @@ public class LoanService {
 
     public String unClaimTask(String taskId){
         String url = String.format(UNCLAIM_TASK,taskId);
+        System.out.println(url);
         webClientService.postCall(url);
         return "Successfully Unclaimed";
     }

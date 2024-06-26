@@ -4,14 +4,17 @@
             <h3>User-Info</h3>
             <div class="child1">
                 <div>
-                    <p>firstName</p>
-                    <p>lastName</p>
+                    <p>First Name</p>
                     <p>Age</p>
                     <p>Gender</p>
                     <p>Salary</p>
                 </div>
                 <div> 
-                    <p>jakarta</p>
+                    <p>{{loanObject.loanDetails.name}}</p>
+                    <p>{{loanObject.loanDetails.age}}</p>
+                    <p>{{loanObject.loanDetails.gender}}</p>
+                    <p>{{loanObject.loanDetails.salary}}</p>
+                    
                 </div>
             </div>
             
@@ -21,20 +24,29 @@
           <div class="loan-details">
             <div>
                 <p>Existing Loan</p>
-                <p>newLoanAmount</p>
-                <p>tenure</p>
-                <p>rateOfInterest</p>
+                <p>New Loan Amount</p>
+                <p>Tenure</p>
+                <p>Interest</p>
             </div>
             <div>
-                <p>25000</p>
+                <p>{{loanObject.loanDetails.existingLoan}}</p>
+                <p>{{loanObject.loanDetails.newLoanAmount}}</p>
+                <p>{{loanObject.loanDetails.ternure}}</p>
+                <p>{{loanObject.loanDetails.rateOfInterest}}</p>
             </div>
         </div>
             <p>in progress</p>
         </div>
     </div>
     <div class="section2">
-        in progress
+        <div>
+        {{loanObject.taskDetails.stage}} - {{loanObject.userDetails.firstName}}
     </div>
+        <div>
+            <button (click)="onApproval()">Approve</button>
+        </div>
+    </div>
+    
 </div> 
 
 

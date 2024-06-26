@@ -6,7 +6,7 @@
     <ng-container matColumnDef="infoIcon">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <div *ngIf="showInfoIcon" routerLink="/dashboard/information-details">
+        <div *ngIf="showInfoIcon" (click)="onIbuttonClick(element)">
           <mat-icon matTooltip="view details">info</mat-icon>
         </div>
       </td>

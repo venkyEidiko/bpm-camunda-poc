@@ -30,6 +30,9 @@
     border: 1px solid #9575cd;
     padding: 10px; 
     height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .child1{
     display: flex;

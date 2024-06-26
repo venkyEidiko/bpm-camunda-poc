@@ -7,21 +7,26 @@ import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 })
 export class ClaimService {
    url='http://localhost:8081/loan/claim';
-   unclaimurl='http://localhost:8081/api1';
+   unclaimurl='http://localhost:8081/loan/unclaim/';
 
    unassignTask = "http://localhost:8081/loan/unassigntask";
    assignTask = "http://localhost:8081/loan/assigntask";
+   completeTaskurl = "http://localhost:8081/loan/task/complete/"
+
+   loanData:any;
 
   constructor(private http:HttpClient) { }
 
-claim(data: any): Observable<any> {
-    console.log('claim Data Sent:', data); 
+  claim(data: any): Observable<any> {
+    console.log('claim Data Sent - ', data); 
     return this.http.post<any>(this.url, data);
   }
 
   unclaim(data:any):Observable<any>
   {
-    return this.http.post<any>(this.unclaimurl,data);
+    const url = `${this.unclaimurl}${data}`;
+    console.log(url);
+    return this.http.get<any>(url);
   }
 
   getUnassignTask(data:any):Observable<any>{
@@ -30,6 +35,17 @@ claim(data: any): Observable<any> {
 
   getAssignTask(data:any):Observable<any>{
     return this.http.post<any>(this.assignTask,data);
-   }
+  }
 
+  completeTask(data:any):Observable<any>{
+    const url = `${this.completeTaskurl}${data}`; 
+    return this.http.get<any>(url);
+  }
+
+  setLoanObject(data:any){
+    this.loanData = data;
+   }
+   getLoanObject(): any{
+    return this.loanData;
+   }
 }
