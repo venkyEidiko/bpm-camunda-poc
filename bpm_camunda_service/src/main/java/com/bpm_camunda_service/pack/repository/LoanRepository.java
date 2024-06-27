@@ -9,5 +9,7 @@ import java.util.Optional;
 @Repository
 public interface LoanRepository extends JpaRepository<Loan,Integer> {
     Optional<Loan> findByProcessInstanceId(String processInstanceId);
+
+    Loan findByTaskId(String taskId);
     // Loan findByBusinessKey(String businessKey);
 }

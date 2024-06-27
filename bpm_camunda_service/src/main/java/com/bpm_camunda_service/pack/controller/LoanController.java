@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/loan")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200/**")
 public class LoanController {
 
     private final LoanService loanService;
@@ -47,14 +47,16 @@ public class LoanController {
         return commonresponse;
     }
 
-    @GetMapping("/claim")
+    @PostMapping("/claim")
     public Commonresponse claimTask(@RequestBody ClaimRequest request){
         String msg = loanService.claimTask(request);
         return Commonresponse.builder().result(Arrays.asList(msg)).build();
     }
 
+
     @GetMapping("/unclaim/{taskId}")
     public Commonresponse unClaimTask(@PathVariable String taskId){
+        System.out.println(taskId);
         String msg = loanService.unClaimTask(taskId);
         return Commonresponse.builder().result(Arrays.asList(msg)).build();
     }
@@ -66,9 +68,10 @@ public class LoanController {
                         .result(Arrays.asList(loanService.getTaskCount()))
                         .build();
     }
-    @PostMapping("/task/complete/{taskId}")
-    public Commonresponse completeTask(@PathVariable String taskId){
-        String msg = loanService.completeTask(taskId);
+
+    @PostMapping("/task/complete")
+    public Commonresponse completeTask(@RequestBody CompleteTaskRequest request){
+        String msg = loanService.completeTask(request);
         return Commonresponse.builder().result(Arrays.asList(msg)).build();
     }
 

@@ -48,7 +48,9 @@ public class WebClientService {
                 .retrieve()
                 .onStatus(HttpStatusCode::isError, result -> {
                     return Mono.error(new Exception("Failed to call an API"));
-                });
+                })
+                .toBodilessEntity()
+                .block();
     }
 
     public <T> T getCall(String url, Class<T> responseType){
