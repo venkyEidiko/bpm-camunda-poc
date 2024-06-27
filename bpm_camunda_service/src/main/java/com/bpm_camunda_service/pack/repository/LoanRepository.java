@@ -11,8 +11,11 @@ import com.bpm_camunda_service.pack.entity.Loan;
 @Repository
 public interface LoanRepository extends JpaRepository<Loan,Integer> {
     Optional<Loan> findByProcessInstanceId(String processInstanceId);
-     //Loan findByBusinessKey(String businessKey);
-     
-   //  List<Loan>findAllByBusinessKey(Iterable<String> businessKey);
+
      List<Loan> findAllByBusinessKeyIn(List<String> businessKeys);
+
+
+    Loan findByTaskId(String taskId);
+    // Loan findByBusinessKey(String businessKey);
+
 }

@@ -40,7 +40,7 @@ public class AccountController {
     }
 
     @GetMapping("/hello")
-    public String test(){
-        return "hello";
+    public User test(){
+        return userService.getById(1);
     }
 }

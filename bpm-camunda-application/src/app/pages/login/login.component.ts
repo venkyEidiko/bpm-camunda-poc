@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       (response: any) => {
         if (response.problem == null) {
           console.log("Response from backend: ", response);
-          this.router.navigate(["/dashboard"])
+          this.router.navigate(["/dashboard/task/unassign"])
         } else {
           console.log("Error: ", response.problem);
         }

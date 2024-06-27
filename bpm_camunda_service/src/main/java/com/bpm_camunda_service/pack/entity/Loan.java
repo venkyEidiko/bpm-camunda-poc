@@ -33,5 +33,6 @@ public class Loan {
     double newLoanAmount;
     double ternure;
     double rateOfInterest;
+    double emiPerMonth;
 
 }

@@ -1,6 +1,6 @@
 <div class="unassign-container">
-  <app-table [dataSource]="data" [showInfoIcon]="true" buttonLabel="claim"></app-table>
-
-
-  </div>
+  <div *ngIf = "showdata">
+  <app-table [list]="tableData" [dataSource]="UnassignTableData" [showInfoIcon]="false" buttonLabel="claim"></app-table>
+    </div>
+</div>
   
