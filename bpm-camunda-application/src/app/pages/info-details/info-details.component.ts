@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClaimService } from 'src/app/services/claim.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-info-details',
@@ -9,7 +10,7 @@ import { ClaimService } from 'src/app/services/claim.service';
 })
 export class InfoDetailsComponent implements OnInit {
 
-  constructor(private service:ClaimService, private router:Router){}
+  constructor(private service:ClaimService, private router:Router,private loginService:LoginService){}
   loanObject:any;
 
   ngOnInit(): void {
@@ -19,7 +20,11 @@ export class InfoDetailsComponent implements OnInit {
   }
 
   onApproval(){
-    this.service.completeTask(this.loanObject.taskDetails.id)
+    const request =  {
+      taskId :this.loanObject.taskDetails.id,
+      empId:this.loginService.getEmployeeData().empId
+    }
+    this.service.completeTask(request)
     .subscribe(
       response =>{
         console.log(response);

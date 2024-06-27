@@ -11,7 +11,7 @@ export class ClaimService {
 
    unassignTask = "http://localhost:8081/loan/unassigntask";
    assignTask = "http://localhost:8081/loan/assigntask";
-   completeTaskurl = "http://localhost:8081/loan/task/complete/"
+   completeTaskurl = "http://localhost:8081/loan/task/complete"
 
    loanData:any;
 
@@ -38,8 +38,7 @@ export class ClaimService {
   }
 
   completeTask(data:any):Observable<any>{
-    const url = `${this.completeTaskurl}${data}`; 
-    return this.http.get<any>(url);
+    return this.http.post<any>(this.completeTaskurl,data);
   }
 
   setLoanObject(data:any){

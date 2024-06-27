@@ -94,9 +94,17 @@ public class LoanService {
         return count;
     }
 
-    public String completeTask(String taskId){
-        String url = String.format(COMPLETE_TASK,taskId);
+    public String completeTask(CompleteTaskRequest request){
+        String url = String.format(COMPLETE_TASK,request.getTaskId());
         webClientService.postCall(url);
+        Loan loan = loanRepository.findByTaskId(request.getTaskId());
+        if(loan.getEmIdApproval1()==0){
+            loan.setEmIdApproval1(request.getEmpId());
+        }
+        else{
+            loan.setEmpIdApproval2(request.getEmpId());
+        }
+        loanRepository.save(loan);
         return "Task Completed";
     }
 

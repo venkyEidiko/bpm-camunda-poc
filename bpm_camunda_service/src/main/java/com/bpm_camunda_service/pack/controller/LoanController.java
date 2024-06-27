@@ -69,9 +69,9 @@ public class LoanController {
                         .build();
     }
 
-    @GetMapping("/task/complete/{taskId}")
-    public Commonresponse completeTask(@PathVariable String taskId){
-        String msg = loanService.completeTask(taskId);
+    @PostMapping("/task/complete")
+    public Commonresponse completeTask(@RequestBody CompleteTaskRequest request){
+        String msg = loanService.completeTask(request);
         return Commonresponse.builder().result(Arrays.asList(msg)).build();
     }
 
