@@ -146,4 +146,8 @@ public class LoanService {
         return "BPM"+randomNumber;
 
     }
+    public List<Loan> getLoanData(List<String> bKeys) {
+		List<Loan> allByBusinessKey = loanRepository.findAllByBusinessKeyIn(bKeys);
+		return allByBusinessKey;
+	}
 }
