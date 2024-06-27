@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 @Injectable({
@@ -12,6 +12,7 @@ export class ClaimService {
    unassignTask = "http://localhost:8081/loan/unassigntask";
    assignTask = "http://localhost:8081/loan/assigntask";
    completeTaskurl = "http://localhost:8081/loan/task/complete"
+   downloandUrl = "http://10.0.0.38:8083/download/pdf";
 
    loanData:any;
 
@@ -41,6 +42,17 @@ export class ClaimService {
     return this.http.post<any>(this.completeTaskurl,data);
   }
 
+  download(businessKeys: string[]): Observable<Blob> {
+    let params = new HttpParams();
+    businessKeys.forEach(key => {
+      params = params.append('businessKey', key);
+    });
+
+    return this.http.get('http://10.0.0.38:8083/download/pdf', {
+      responseType: 'blob', // Set response type to Blob
+      params: params
+    });
+  }
   setLoanObject(data:any){
     this.loanData = data;
    }

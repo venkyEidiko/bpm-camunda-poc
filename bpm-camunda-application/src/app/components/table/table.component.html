@@ -1,8 +1,10 @@
-
+<div class="download">
+  <button (click)="onDownload()">DownLoan</button>
+</div>
 <div class="table-container">
   <table mat-table [dataSource]="dataSourceMat">
 
-  
+
     <ng-container matColumnDef="infoIcon">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
@@ -11,6 +13,8 @@
         </div>
       </td>
     </ng-container>
+
+
 
     <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns.slice(1, -1)">
       <th mat-header-cell *matHeaderCellDef>{{ column | uppercase }}</th>
@@ -21,17 +25,24 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>{{ buttonLabel | uppercase }}</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-button matTooltip="click here" (click)="onButtonClick(element)">{{ buttonLabel }}</button>
+        <div class="button-container">
+          <div>
+            <button class = "claim-button" mat-button matTooltip="click here" (click)="onButtonClick(element)">{{ buttonLabel }}</button>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" (change)="onSelect(element)">
+          </div>
+        </div>
       </td>
+
+
     </ng-container>
+
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator 
-    [pageSizeOptions]="[5, 10, 25]"
-    showFirstLastButtons 
-    aria-label="Select page of data">
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons aria-label="Select page of data">
   </mat-paginator>
 </div>

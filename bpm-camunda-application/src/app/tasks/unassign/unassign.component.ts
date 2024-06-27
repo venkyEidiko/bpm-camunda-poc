@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClaimService } from 'src/app/services/claim.service';
 import { TaskDetails } from 'src/app/taskDetail';
 
@@ -11,7 +12,7 @@ import { TaskDetails } from 'src/app/taskDetail';
 export class UnassignComponent implements OnInit{
 
 
-  constructor(private service: ClaimService){}
+  constructor(private service: ClaimService, private router: Router){}
 
   showdata=false;
 
@@ -25,8 +26,21 @@ export class UnassignComponent implements OnInit{
   bodyForUnassign:any= 
   {
     "unassigned":true,
-    "taskDefinitionKey": "approval1"
+    "taskDefinitionKey": this.fetchUrl()
   }
+
+  
+  fetchUrl(){
+    const url = this.router.url;
+    if(url.includes('approval1')){
+      return 'approval1';
+    }
+    else if(url.includes('approval2')){
+      return 'approval2';
+    }
+    return '';
+  }
+
 
   fetchData(data:any){
     this.service.getUnassignTask(data).subscribe(

@@ -11,38 +11,67 @@ import { Approval1Component } from './components/approval1/approval1.component';
 
 const routes: Routes = [
   {
-    path:'',component:RegistrationComponent
+    path: '',
+    component: RegistrationComponent,
   },
   {
-    path:'login',component:LoginComponent
+    path: 'login',
+    component: LoginComponent,
   },
   {
-    path:'dashboard',component:DashboardComponent,children:[
-     {
-      path:'task',component:TaskComponent,
-      children:[
-        {
-          path:'unassign',component:UnassignComponent
-        },
-        {
-          path:'assign',component:AssignComponent
-        },
-        {
-          path:'approval2',component:Approval1Component
-        }
-      ],
-     
-     },
-     {
-      path:'information-details',component:InfoDetailsComponent
-     }
-    ]
-  }
-
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'approval1',
+        component: Approval1Component,
+        children: [
+          {
+            path: 'task',
+            component: TaskComponent,
+            children: [
+              {
+                path: 'unassign',
+                component: UnassignComponent,
+              },
+              {
+                path: 'assign',
+                component: AssignComponent,
+              }
+            ],
+          },
+        ],
+      },
+      {
+        path: 'approval2',
+        component: Approval1Component,
+        children: [
+          {
+            path: 'task',
+            component: TaskComponent,
+            children: [
+              {
+                path: 'unassign',
+                component: UnassignComponent,
+              },
+              {
+                path: 'assign',
+                component: AssignComponent,
+              }
+            ],
+          },
+        ],
+      },
+      {
+        path: 'information-details',
+        component: InfoDetailsComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

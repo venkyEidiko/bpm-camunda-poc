@@ -25,6 +25,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { Approval1Component } from './components/approval1/approval1.component';
+import { Approval2Component } from './components/approval2/approval2.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { Approval1Component } from './components/approval1/approval1.component';
     InfoDetailsComponent,
     DialogComponent,
     Approval1Component,
+    Approval2Component,
   
   ],
   imports: [

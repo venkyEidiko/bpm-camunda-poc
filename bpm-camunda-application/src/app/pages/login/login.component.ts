@@ -33,13 +33,14 @@ export class LoginComponent implements OnInit {
       (response: any) => {
         if (response.problem == null) {
           console.log("Response from backend: ", response);
-          this.router.navigate(["/dashboard/task/unassign"])
+          this.router.navigate(["/dashboard/approval1/task/unassign"])
         } else {
           console.log("Error: ", response.problem);
         }
       },
       (error: any) => {
         console.error('Login error:', error);
+        alert("Something went wrong, please check credentials");
       }
     );
   }
