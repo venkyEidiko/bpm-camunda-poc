@@ -48,7 +48,7 @@ export class ClaimService {
       params = params.append('businessKey', key);
     });
 
-    return this.http.get('http://10.0.0.38:8083/download/pdf', {
+    return this.http.get('http://localhost:8081/download/pdf', {
       responseType: 'blob', // Set response type to Blob
       params: params
     });

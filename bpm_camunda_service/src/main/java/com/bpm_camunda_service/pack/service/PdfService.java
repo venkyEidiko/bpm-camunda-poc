@@ -1,3 +1,4 @@
+
 package com.bpm_camunda_service.pack.service;
 
 import java.io.ByteArrayOutputStream;
@@ -95,11 +96,20 @@ public class PdfService {
 			String entityName = "LOAN_REQUEST";
 			String fileName = entityName + "_" + formattedDate + ".pdf";
 
-			String directoryPath = "C:\\opt\\pdfGeneration";
+			String baseDirectoryPath = "C:\\opt";
+			String directoryPath = baseDirectoryPath + "\\pdfGeneration";
+
+			File baseDirectory = new File(baseDirectoryPath);
+			if (!baseDirectory.exists()) {
+				baseDirectory.mkdir();
+			}
+
 			File directory = new File(directoryPath);
 			if (!directory.exists()) {
-				throw new FilePathNotFoundException("Directory path does not exist: " + directoryPath);
+				directory.mkdir();
 			}
+
+
 
 			Path filePath = Paths.get(directoryPath, fileName);
 			try (FileOutputStream fos = new FileOutputStream(filePath.toFile())) {
@@ -118,3 +128,34 @@ public class PdfService {
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
