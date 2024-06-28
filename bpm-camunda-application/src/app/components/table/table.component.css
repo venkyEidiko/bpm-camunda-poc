@@ -72,3 +72,31 @@
  .download button:hover{
   background-color: #b39ddb;
  }
+
+ .checkbox-container .container {
+  cursor: pointer;
+}
+
+.checkbox-container .container input {
+  display: none;
+}
+
+.checkbox-container .container svg {
+  overflow: visible;
+}
+
+.checkbox-container .path {
+  fill: none;
+  stroke: rgb(12, 11, 11);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+  stroke-dasharray: 241 9999999;
+  stroke-dashoffset: 0;
+}
+
+.checkbox-container .container input:checked ~ svg .path {
+  stroke-dasharray: 70.5096664428711 9999999;
+  stroke-dashoffset: -262.2723388671875;
+}

@@ -23,7 +23,8 @@
                             <div class="form-row-password">
                                 <input [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password" class="form-control" placeholder="Password">
                                 <div class="input-group-append">
-                                    <button type="button" class="password-btn" (click)="togglePasswordVisibility()">show</button>
+                                    <button class="password-btn">
+                                    <i class="fa-solid fa-eye-slash" (click)="togglePasswordVisibility()"></i></button>
                                 </div>
                             </div>
                             <small *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">password must be 8 characters includes "A","a","1","#"</small>

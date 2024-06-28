@@ -1,10 +1,13 @@
 <div class="unassign-container">
-  <div *ngIf="dataPresent; else elseBlock">
+  <div *ngIf = "showLoader" class="loader">
+    <div class="spinner"></div>
+  </div>
+  <div *ngIf="showdata">
     <app-table [list]="tableData" [dataSource]="UnassignTableData" [showInfoIcon]="true"
       buttonLabel="Unclaim"></app-table>
   </div>
-  <ng-template #elseBlock>
+  <div *ngIf = "!(showLoader) && !(showdata)">
     <h3><i>No Task assigned yet....</i></h3>
-  </ng-template>
+  </div>
 
 </div>

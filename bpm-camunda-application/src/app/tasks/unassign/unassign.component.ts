@@ -12,15 +12,17 @@ import { TaskDetails } from 'src/app/taskDetail';
 export class UnassignComponent implements OnInit{
 
 
-  constructor(private service: ClaimService, private router: Router,private cdr: ChangeDetectorRef){}
+  constructor(private service: ClaimService, private router: Router){}
 
   showdata=false;
+  showLoader= true;
 
   UnassignTableData:TaskDetails[]=[];
   tableData:any;
 
   ngOnInit(): void {
     this.fetchData(this.bodyForUnassign);
+
   }
 
   bodyForUnassign:any= 
@@ -43,6 +45,7 @@ export class UnassignComponent implements OnInit{
 
 
   fetchData(data:any){
+    
     this.service.getUnassignTask(data).subscribe(
       (response:any) =>{
         this.tableData =response;
@@ -50,10 +53,12 @@ export class UnassignComponent implements OnInit{
         this.getList(this.tableData);
       }
     )
+    
   }
 
   
  getList(tableData:any){
+  this.showLoader = true;
   this.UnassignTableData = [];
   for(let data of tableData){
     const tableEntry:TaskDetails = {
@@ -71,12 +76,10 @@ export class UnassignComponent implements OnInit{
   else{
     this.showdata = true;
   }
+  this.showLoader = false;
 }
 
-updateData() {
-  this.fetchData(this.bodyForUnassign);
-  this.cdr.detectChanges();
-}
+
 
   
 
