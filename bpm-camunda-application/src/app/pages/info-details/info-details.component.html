@@ -1,6 +1,11 @@
 <div class="information-container">
+    <div class="back" >
+        <div class="button">
+        <mat-icon style="color:#fff8e1" (click) = "back()">cancel</mat-icon>
+        </div>
+    </div>
     <div class="section1">
-        <div >
+        <div class="user-details-1">
             <h3>User-Info</h3>
             <div class="child1">
                 <div>
@@ -43,7 +48,7 @@
         {{loanObject.taskDetails.stage}} - {{loanObject.userDetails.firstName}}
     </div>
         <div>
-            <button (click)="onApproval()">Approve</button>
+            <button class="download" (click)="onApproval()">Approve</button>
         </div>
     </div>
     

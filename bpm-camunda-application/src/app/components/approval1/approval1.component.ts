@@ -9,15 +9,4 @@ import { TaskDetails } from 'src/app/taskDetail';
 })
 export class Approval1Component{
 
-  
-  data1=
-[
-  {
-  businessKey: 'key2',
-  empId:'',
-  existingLoan:'',
-  
-  newLoanAmount: 50000,
-  }
-]
 }

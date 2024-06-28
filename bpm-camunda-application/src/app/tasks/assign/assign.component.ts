@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClaimService } from 'src/app/services/claim.service';
 import { TaskDetails } from 'src/app/taskDetail';
 
@@ -10,9 +11,10 @@ import { TaskDetails } from 'src/app/taskDetail';
 export class AssignComponent implements OnInit{
 
 
-  constructor(private service: ClaimService){}
+  constructor(private service: ClaimService, private router: Router){}
 
   showdata=false;
+  dataPresent = false;
 
   UnassignTableData:TaskDetails[]=[];
   tableData:any;
@@ -24,8 +26,20 @@ export class AssignComponent implements OnInit{
   bodyForUnassign:any= 
   {
     "assigned":true,
-    "taskDefinitionKey": "approval1"
+    "taskDefinitionKey": this.fetchUrl()
   }
+
+  fetchUrl(){
+    const url = this.router.url;
+    if(url.includes('approval1')){
+      return 'approval1';
+    }
+    else if(url.includes('approval2')){
+      return 'approval2';
+    }
+    return '';
+  }
+
 
   fetchData(data:any){
     this.service.getAssignTask(data).subscribe(
@@ -39,6 +53,7 @@ export class AssignComponent implements OnInit{
 
   
  getList(tableData:any){
+  this.UnassignTableData = [];
   for(let data of tableData){
     const tableEntry:TaskDetails = {
     bussinessKey:data.loanDetails.businessKey,
@@ -49,7 +64,12 @@ export class AssignComponent implements OnInit{
     this.UnassignTableData.push(tableEntry);
     console.log(this.UnassignTableData);
   }
-  this.showdata = true;
+  if(this.UnassignTableData.length == 0){
+    this.dataPresent = false;
+  }
+  else{
+    this.dataPresent = true;
+  }
 }
 
   

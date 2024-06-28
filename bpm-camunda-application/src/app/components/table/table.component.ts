@@ -50,6 +50,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ClaimService } from 'src/app/services/claim.service';
+import { UnassignComponent } from 'src/app/tasks/unassign/unassign.component';
 
 @Component({
   selector: 'app-table',
@@ -64,6 +65,7 @@ export class TableComponent implements OnChanges, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [];
   dataSourceMat!: MatTableDataSource<any>;
+  showTable = true;
 
   constructor(private service: ClaimService, private router: Router) {}
 
@@ -101,6 +103,7 @@ export class TableComponent implements OnChanges, AfterViewInit {
       this.service.claim(claimRequestBody).subscribe(
         response => {
           console.log(response);
+          this.dataSourceMat.data = this.dataSourceMat.data.filter(item => item !== element);
         },
         error => {
           console.log(error);
@@ -112,6 +115,7 @@ export class TableComponent implements OnChanges, AfterViewInit {
       this.service.unclaim(loanObject.taskDetails.id).subscribe(
         (response) => {
           console.log(response);
+          this.dataSourceMat.data = this.dataSourceMat.data.filter(item => item !== element);
         },
         (error) => {
           console.log(error);
@@ -126,6 +130,38 @@ export class TableComponent implements OnChanges, AfterViewInit {
     this.router.navigate(['/dashboard/information-details'])
   }
 
+  printList:any[] = [];
+
+  onSelect(element: any) {
+    const index = this.printList.findIndex(item => item === element.bussinessKey);
+    if (index === -1) {
+      this.printList.push(element.bussinessKey);
+    } else {
+      this.printList.splice(index, 1);
+    }
+    console.log("Selected items:", this.printList);
+  }
+
+  onDownload(){
+    if(this.printList.length==0){
+      console.log("please select items to print");
+    }
+    else{
+      this.service.download(this.printList).subscribe(
+        response =>{
+          console.log("download success",response);
+          alert("pdf downloaded sucessfully, please check c:/opt/pdfGeneration");
+
+        },
+        error =>{
+          console.log("download fail error ",error);
+          alert("something went wrong");
+        }
+      )
+    }
+    
+  }
+
   getData(element: any) {
     for (let listItem of this.list) {
       if (element.bussinessKey === listItem.loanDetails.businessKey) {
@@ -133,4 +169,13 @@ export class TableComponent implements OnChanges, AfterViewInit {
       }
     }
   }
+  checkTable(){
+    if(this.dataSourceMat.data.length==0){
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+  
 }

@@ -1,7 +1,10 @@
 <div class="unassign-container">
-    <div *ngIf = "showdata">
-    <app-table [list]="tableData" [dataSource]="UnassignTableData" [showInfoIcon]="true" buttonLabel="Unclaim"></app-table>
-      </div>
+  <div *ngIf="dataPresent; else elseBlock">
+    <app-table [list]="tableData" [dataSource]="UnassignTableData" [showInfoIcon]="true"
+      buttonLabel="Unclaim"></app-table>
   </div>
+  <ng-template #elseBlock>
+    <h3><i>No Task assigned yet....</i></h3>
+  </ng-template>
 
-
+</div>

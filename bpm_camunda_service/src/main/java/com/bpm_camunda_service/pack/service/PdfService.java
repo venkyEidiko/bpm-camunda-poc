@@ -1,3 +1,4 @@
+
 package com.bpm_camunda_service.pack.service;
 
 import java.io.ByteArrayOutputStream;
@@ -55,19 +56,19 @@ public class PdfService {
 			Table table = new Table(7);
 
 			table.addHeaderCell(
-					new Cell().add(new Paragraph("BusinessKey").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					new Cell().add(new Paragraph("BusinessKey").setBold() .setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(
-					new Cell().add(new Paragraph("Name").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					new Cell().add(new Paragraph("Name").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(
-					new Cell().add(new Paragraph("Company").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					new Cell().add(new Paragraph("Company").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(
-					new Cell().add(new Paragraph("existingLoan").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					new Cell().add(new Paragraph("Existing Loan").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(new Cell()
-					.add(new Paragraph("newLoanAmount").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					.add(new Paragraph("New Loan Amount").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(
-					new Cell().add(new Paragraph("ternure").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					new Cell().add(new Paragraph("Tenure").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(new Cell()
-					.add(new Paragraph("rateOfInterest").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					.add(new Paragraph("Interest").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 
 			for (Loan loan : loanData) {
 				table.addCell(
@@ -95,11 +96,20 @@ public class PdfService {
 			String entityName = "LOAN_REQUEST";
 			String fileName = entityName + "_" + formattedDate + ".pdf";
 
-			String directoryPath = "C:\\opt\\pdfGeneration";
+			String baseDirectoryPath = "C:\\opt";
+			String directoryPath = baseDirectoryPath + "\\pdfGeneration";
+
+			File baseDirectory = new File(baseDirectoryPath);
+			if (!baseDirectory.exists()) {
+				baseDirectory.mkdir();
+			}
+
 			File directory = new File(directoryPath);
 			if (!directory.exists()) {
-				throw new FilePathNotFoundException("Directory path does not exist: " + directoryPath);
+				directory.mkdir();
 			}
+
+
 
 			Path filePath = Paths.get(directoryPath, fileName);
 			try (FileOutputStream fos = new FileOutputStream(filePath.toFile())) {
@@ -118,3 +128,34 @@ public class PdfService {
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
