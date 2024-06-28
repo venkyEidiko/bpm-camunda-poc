@@ -56,19 +56,19 @@ public class PdfService {
 			Table table = new Table(7);
 
 			table.addHeaderCell(
-					new Cell().add(new Paragraph("BusinessKey").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					new Cell().add(new Paragraph("BusinessKey").setBold() .setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(
-					new Cell().add(new Paragraph("Name").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					new Cell().add(new Paragraph("Name").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(
-					new Cell().add(new Paragraph("Company").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					new Cell().add(new Paragraph("Company").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(
-					new Cell().add(new Paragraph("existingLoan").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					new Cell().add(new Paragraph("Existing Loan").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(new Cell()
-					.add(new Paragraph("newLoanAmount").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					.add(new Paragraph("New Loan Amount").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(
-					new Cell().add(new Paragraph("ternure").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					new Cell().add(new Paragraph("Tenure").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 			table.addHeaderCell(new Cell()
-					.add(new Paragraph("rateOfInterest").setTextAlignment(TextAlignment.CENTER).setPadding(5)));
+					.add(new Paragraph("Interest").setBold().setTextAlignment(TextAlignment.CENTER).setPadding(5)));
 
 			for (Loan loan : loanData) {
 				table.addCell(

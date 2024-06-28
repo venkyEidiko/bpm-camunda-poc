@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClaimService } from 'src/app/services/claim.service';
 import { TaskDetails } from 'src/app/taskDetail';
@@ -12,7 +12,7 @@ import { TaskDetails } from 'src/app/taskDetail';
 export class UnassignComponent implements OnInit{
 
 
-  constructor(private service: ClaimService, private router: Router){}
+  constructor(private service: ClaimService, private router: Router,private cdr: ChangeDetectorRef){}
 
   showdata=false;
 
@@ -54,6 +54,7 @@ export class UnassignComponent implements OnInit{
 
   
  getList(tableData:any){
+  this.UnassignTableData = [];
   for(let data of tableData){
     const tableEntry:TaskDetails = {
     bussinessKey:data.loanDetails.businessKey,
@@ -64,7 +65,17 @@ export class UnassignComponent implements OnInit{
     this.UnassignTableData.push(tableEntry);
     console.log(this.UnassignTableData);
   }
-  this.showdata = true;
+  if(this.UnassignTableData.length == 0){
+    this.showdata = false;
+  }
+  else{
+    this.showdata = true;
+  }
+}
+
+updateData() {
+  this.fetchData(this.bodyForUnassign);
+  this.cdr.detectChanges();
 }
 
   

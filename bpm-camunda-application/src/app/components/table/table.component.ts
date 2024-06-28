@@ -50,6 +50,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ClaimService } from 'src/app/services/claim.service';
+import { UnassignComponent } from 'src/app/tasks/unassign/unassign.component';
 
 @Component({
   selector: 'app-table',
@@ -64,6 +65,7 @@ export class TableComponent implements OnChanges, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [];
   dataSourceMat!: MatTableDataSource<any>;
+  showTable = true;
 
   constructor(private service: ClaimService, private router: Router) {}
 
@@ -101,6 +103,7 @@ export class TableComponent implements OnChanges, AfterViewInit {
       this.service.claim(claimRequestBody).subscribe(
         response => {
           console.log(response);
+          this.dataSourceMat.data = this.dataSourceMat.data.filter(item => item !== element);
         },
         error => {
           console.log(error);
@@ -112,6 +115,7 @@ export class TableComponent implements OnChanges, AfterViewInit {
       this.service.unclaim(loanObject.taskDetails.id).subscribe(
         (response) => {
           console.log(response);
+          this.dataSourceMat.data = this.dataSourceMat.data.filter(item => item !== element);
         },
         (error) => {
           console.log(error);
@@ -165,4 +169,13 @@ export class TableComponent implements OnChanges, AfterViewInit {
       }
     }
   }
+  checkTable(){
+    if(this.dataSourceMat.data.length==0){
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+  
 }

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClaimService } from 'src/app/services/claim.service';
@@ -10,7 +11,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class InfoDetailsComponent implements OnInit {
 
-  constructor(private service:ClaimService, private router:Router,private loginService:LoginService){}
+  constructor(private service:ClaimService, private location:Location,private loginService:LoginService){}
   loanObject:any;
 
   ngOnInit(): void {
@@ -28,12 +29,15 @@ export class InfoDetailsComponent implements OnInit {
     .subscribe(
       response =>{
         console.log(response);
-        this.router.navigate(['/dashboard/task/assign']);
+        this.location.back();
       },
       error => {
         console.log(error);
       }
     )
+  }
+  back(){
+    this.location.back();
   }
 
 }
