@@ -14,7 +14,7 @@ export class AssignComponent implements OnInit{
   constructor(private service: ClaimService, private router: Router){}
 
   showdata=false;
-  dataPresent = false;
+  showLoader = true;
 
   UnassignTableData:TaskDetails[]=[];
   tableData:any;
@@ -53,6 +53,7 @@ export class AssignComponent implements OnInit{
 
   
  getList(tableData:any){
+  this.showLoader = true;
   this.UnassignTableData = [];
   for(let data of tableData){
     const tableEntry:TaskDetails = {
@@ -65,11 +66,12 @@ export class AssignComponent implements OnInit{
     console.log(this.UnassignTableData);
   }
   if(this.UnassignTableData.length == 0){
-    this.dataPresent = false;
+    this.showdata = false;
   }
   else{
-    this.dataPresent = true;
+    this.showdata = true;
   }
+  this.showLoader = false;
 }
 
   

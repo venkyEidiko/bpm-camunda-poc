@@ -97,3 +97,11 @@ button:hover {
   border-radius: 50%;
   opacity: 0.9;
 }
+.password-btn{
+  background-color: transparent;
+  border: none;
+  margin-left: -15px;
+}
+.password-btn:hover{
+  background-color: transparent;
+}
